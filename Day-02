@@ -1,0 +1,21 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+
+        HashSet<Integer>set=new HashSet<>();
+
+        for(int i=0;i<nums.length;i++){
+            if(set.contains(nums[i])){
+                return true;
+            }
+            set.add(nums[i]);
+        }
+
+        return false;
+        
+    }
+}
+
+
+# Write your MySQL query statement below
+
+select c.name as Customers  from Customers c left join Orders o On c.id =o.customerId where o.customerId is null ;
