@@ -1,0 +1,46 @@
+// LeetCode 242: Valid Anagram (Easy)
+// Pattern: frequency counting with a fixed-size array
+// Brute force: sort both strings and compare, O(n log n)
+// Optimal: count letters, O(n) time, O(1) space (26 slots)
+// Note: works because input is lowercase English letters only.
+//       For Unicode or uppercase, use HashMap<Character, Integer>.
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int[] counts = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            counts[s.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < t.length(); i++) {
+            int index = t.charAt(i) - 'a';
+            if (counts[index] == 0) {
+                return false;
+            }
+            counts[index]--;
+        }
+
+        return true;
+    }
+}
+
+
+-- LeetCode 182: Duplicate Emails (Easy)
+-- Lesson: WHERE filters rows BEFORE grouping, HAVING filters groups AFTER.
+--         COUNT is a function, so it needs COUNT(*).
+SELECT email AS Email
+FROM Person
+GROUP BY email
+HAVING COUNT(*) > 1;
+
+
+# Day 3
+Solved: Valid Anagram (242), Duplicate Emails (182)
+Got wrong: flipped 'a' - char (should be char - 'a'), array size 25 instead of 26, wrote "count" without COUNT(*)
+Learned: char arithmetic gives array indexes; HAVING filters groups, WHERE filters rows
+
+
